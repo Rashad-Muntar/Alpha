@@ -1,29 +1,23 @@
+<div class="blog-wrapper">
 <p id="notice"><%= notice %></p>
 
 <h1>Articles</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.title %></td>
-        <td><%= article.description %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% @articles.reverse.each do |article| %>
+      <%= link_to article do %>
+      <div class="card">
+        <div class="card-body">
+        <h5 class="card-header"><%= article.title %></h5>
+        <p class="card-text"><%= article.description %></p>
+          <%= link_to 'Edit', edit_article_path(article), class: "btn btn-primary" %>
+          <%= link_to 'Destroy', article, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= time_ago_in_words(article.created_at)%>
+        </div>
+      </div>
+      <% end %>
+      <br />
     <% end %>
-  </tbody>
-</table>
 
 <br>
 
-<%= link_to 'New Article', new_article_path %>
+</div>

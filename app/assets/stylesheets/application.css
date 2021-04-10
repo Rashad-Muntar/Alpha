@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+ .blog-wrapper{
+    width: 50vw;
+    margin: 0 auto;
+ }
